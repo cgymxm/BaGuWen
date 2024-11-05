@@ -7,6 +7,7 @@ import com.cgy.mianshiya.common.ResultUtils;
 import com.cgy.mianshiya.config.WxOpenConfig;
 import com.cgy.mianshiya.constant.UserConstant;
 import com.cgy.mianshiya.exception.BusinessException;
+import com.cgy.mianshiya.model.entity.User;
 import com.cgy.mianshiya.service.UserService;
 import com.cgy.mianshiya.service.impl.UserServiceImpl;
 import com.cgy.mianshiya.annotation.AuthCheck;
@@ -18,7 +19,6 @@ import com.cgy.mianshiya.model.dto.user.UserQueryRequest;
 import com.cgy.mianshiya.model.dto.user.UserRegisterRequest;
 import com.cgy.mianshiya.model.dto.user.UserUpdateMyRequest;
 import com.cgy.mianshiya.model.dto.user.UserUpdateRequest;
-import com.cgy.mianshiya.model.entity.User;
 import com.cgy.mianshiya.model.vo.LoginUserVO;
 import com.cgy.mianshiya.model.vo.UserVO;
 

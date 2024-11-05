@@ -4,10 +4,10 @@ import com.cgy.mianshiya.common.BaseResponse;
 import com.cgy.mianshiya.common.ErrorCode;
 import com.cgy.mianshiya.common.ResultUtils;
 import com.cgy.mianshiya.exception.BusinessException;
+import com.cgy.mianshiya.model.entity.User;
 import com.cgy.mianshiya.service.PostThumbService;
 import com.cgy.mianshiya.service.UserService;
 import com.cgy.mianshiya.model.dto.postthumb.PostThumbAddRequest;
-import com.cgy.mianshiya.model.entity.User;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;

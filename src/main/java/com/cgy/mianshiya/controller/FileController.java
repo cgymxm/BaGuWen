@@ -7,9 +7,9 @@ import com.cgy.mianshiya.common.ResultUtils;
 import com.cgy.mianshiya.constant.FileConstant;
 import com.cgy.mianshiya.exception.BusinessException;
 import com.cgy.mianshiya.manager.CosManager;
+import com.cgy.mianshiya.model.entity.User;
 import com.cgy.mianshiya.service.UserService;
 import com.cgy.mianshiya.model.dto.file.UploadFileRequest;
-import com.cgy.mianshiya.model.entity.User;
 import com.cgy.mianshiya.model.enums.FileUploadBizEnum;
 
 import java.io.File;

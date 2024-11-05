@@ -8,11 +8,11 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cgy.mianshiya.common.ErrorCode;
 import com.cgy.mianshiya.exception.BusinessException;
 import com.cgy.mianshiya.mapper.PostFavourMapper;
+import com.cgy.mianshiya.model.entity.User;
 import com.cgy.mianshiya.service.PostFavourService;
 import com.cgy.mianshiya.service.PostService;
 import com.cgy.mianshiya.model.entity.Post;
 import com.cgy.mianshiya.model.entity.PostFavour;
-import com.cgy.mianshiya.model.entity.User;
 
 import javax.annotation.Resource;
 import org.springframework.aop.framework.AopContext;

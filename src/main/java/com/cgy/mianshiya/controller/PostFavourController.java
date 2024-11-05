@@ -5,6 +5,7 @@ import com.cgy.mianshiya.common.BaseResponse;
 import com.cgy.mianshiya.common.ErrorCode;
 import com.cgy.mianshiya.common.ResultUtils;
 import com.cgy.mianshiya.exception.BusinessException;
+import com.cgy.mianshiya.model.entity.User;
 import com.cgy.mianshiya.service.PostFavourService;
 import com.cgy.mianshiya.service.PostService;
 import com.cgy.mianshiya.service.UserService;
@@ -13,7 +14,6 @@ import com.cgy.mianshiya.model.dto.post.PostQueryRequest;
 import com.cgy.mianshiya.model.dto.postfavour.PostFavourAddRequest;
 import com.cgy.mianshiya.model.dto.postfavour.PostFavourQueryRequest;
 import com.cgy.mianshiya.model.entity.Post;
-import com.cgy.mianshiya.model.entity.User;
 import com.cgy.mianshiya.model.vo.PostVO;
 
 import javax.annotation.Resource;
