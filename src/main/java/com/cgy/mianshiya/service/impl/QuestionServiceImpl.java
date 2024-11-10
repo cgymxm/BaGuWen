@@ -63,6 +63,7 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question>
     @Override
     public QueryWrapper<Question> getQueryWrapper(QuestionQueryRequest questionQueryRequest) {
         ThrowUtils.throwIf(questionQueryRequest == null,ErrorCode.PARAMS_ERROR);
+        System.out.println("111");
         String content = questionQueryRequest.getContent();
         Long id = questionQueryRequest.getId();
         List<String> tagList = questionQueryRequest.getTags();
