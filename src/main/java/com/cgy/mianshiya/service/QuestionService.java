@@ -43,4 +43,11 @@ public interface QuestionService extends IService<Question> {
      * @return
      */
     Page<Question> listQuestionByPage(QuestionQueryRequest questionQueryRequest);
+
+    /**
+     * 根据题库ID查询题目列表
+     * @param questionQueryRequest
+     * @return
+     */
+    Page<Question> getQuestionListByBankId(QuestionQueryRequest questionQueryRequest);
 }

@@ -101,5 +101,18 @@ public class QuestionController {
         return ResultUtils.success(questionPage);
     }
 
+    /**
+     * 根据题库ID查询题目列表
+     * @return
+     */
+    @GetMapping("/list/questionList")
+    public BaseResponse<Page<Question>> getQusetionListByBankId(QuestionQueryRequest questionQueryRequest){
+        if(questionQueryRequest == null || questionQueryRequest.getQuestionBankId() <=0){
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        Page<Question> questionList = questionService.getQuestionListByBankId(questionQueryRequest);
+        return ResultUtils.success(questionList);
+    }
+
 
 }

@@ -2,6 +2,7 @@ package com.cgy.mianshiya.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.json.JSONUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -13,7 +14,11 @@ import com.cgy.mianshiya.model.dto.question.QuestionAddRequest;
 import com.cgy.mianshiya.model.dto.question.QuestionQueryRequest;
 import com.cgy.mianshiya.model.dto.question.QuestionUpdateRequest;
 import com.cgy.mianshiya.model.entity.Question;
+import com.cgy.mianshiya.model.entity.QuestionBank;
+import com.cgy.mianshiya.model.entity.QuestionBankQuestion;
 import com.cgy.mianshiya.model.entity.User;
+import com.cgy.mianshiya.service.QuestionBankQuestionService;
+import com.cgy.mianshiya.service.QuestionBankService;
 import com.cgy.mianshiya.service.QuestionService;
 import com.cgy.mianshiya.mapper.QuestionMapper;
 import com.cgy.mianshiya.service.UserService;
@@ -27,6 +32,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
 * @author cgy
@@ -39,6 +45,10 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question>
 
     @Resource
     private UserService userService;
+    @Resource
+    private QuestionBankQuestionService questionBankQuestionService;
+    @Resource
+    private QuestionService questionService;
     /**
      * 校验参数
      * @param question
@@ -102,6 +112,8 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question>
     @Override
     public Long AddQuestion(QuestionAddRequest questionAddRequest, HttpServletRequest request) {
         Question question = new Question();
+        LambdaQueryWrapper<Question> queryWrapper = new LambdaQueryWrapper<>(Question.class)
+                .eq(Question::getContent,questionAddRequest.getContent());
         List<String> tagList = questionAddRequest.getTags();
         Gson gson = new Gson();
         String json = gson.toJson(tagList);
@@ -152,6 +164,18 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question>
         QueryWrapper<Question> queryWrapper = getQueryWrapper(questionQueryRequest);
         Page<Question> page = this.page(new Page<>(questionQueryRequest.getCurrent(), questionQueryRequest.getPageSize()), queryWrapper);
         return page;
+    }
+
+    @Override
+    public Page<Question> getQuestionListByBankId(QuestionQueryRequest questionQueryRequest) {
+        QueryWrapper<QuestionBankQuestion> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("questionBankId",questionQueryRequest.getQuestionBankId());
+        List<QuestionBankQuestion> list = questionBankQuestionService.list(queryWrapper);
+        List<Long> QuestionIdList = list.stream().map(QuestionBankQuestion::getQuestionId).distinct().collect(Collectors.toList());
+        QueryWrapper<Question> questionQueryWrapper = new QueryWrapper<>();
+        questionQueryWrapper.in("id",QuestionIdList);
+        Page<Question> questionPageList = questionService.page(new Page<>(questionQueryRequest.getCurrent(), questionQueryRequest.getPageSize()), questionQueryWrapper);
+        return questionPageList;
     }
 
 }
